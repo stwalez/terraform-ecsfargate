@@ -3,13 +3,13 @@ module "common_us" {
     source = "./common"
 }
 
-# module "common_uk" {
-#     source = "./common"
-#     aws_region = var.aws_region[1]
-#     providers = {
-#         aws = aws.uk
-#     }
-# }
+module "common_uk" {
+    source = "./common"
+    aws_region = var.aws_region[1]
+    providers = {
+        aws = aws.uk
+    }
+}
 
 module "common_germany" {
     source = "./common"
