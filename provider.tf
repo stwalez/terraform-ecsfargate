@@ -22,7 +22,7 @@
 provider "aws" {
   # shared_credentials_files = ["$HOME/.aws/credentials"]
   # profile                  = "default"
-  region                   = var.aws_region[0]
+  region = var.aws_region[0]
 }
 
 # Define alternate aliased providers:
