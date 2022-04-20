@@ -1,4 +1,4 @@
-# provider.tf
+## provider.tf
 # terraform {
 #   required_providers {
 #     aws = {
@@ -10,7 +10,8 @@
 #     organization = "Case-Demo"
 
 #     workspaces {
-#       name = "terraform-ecsfargate"
+#      name = "terraform-ecsfargate"
+#        prefix = "terraform-ecsfargate-"
 #     }
 #   }
 # }
