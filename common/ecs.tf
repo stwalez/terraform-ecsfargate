@@ -1,14 +1,14 @@
 # ecs.tf
 
 resource "aws_ecs_cluster" "main" {
-  name = join("-",[var.ecs_prefix, terraform.workspace, "cluster"])
+  name = join("-", [var.ecs_prefix, local.environment, "cluster"])
 }
 
 data "template_file" "app" {
   template = file("./templates/ecs/app.json.tpl")
 
   vars = {
-    ecs_app        = join("-",[var.ecs_prefix, terraform.workspace, "app"])
+    ecs_app        = join("-", [var.ecs_prefix, local.environment, "app"])
     app_image      = var.app_image
     app_port       = var.app_port
     fargate_cpu    = var.fargate_cpu
@@ -19,7 +19,7 @@ data "template_file" "app" {
 }
 
 resource "aws_ecs_task_definition" "app" {
-  family                   = join("-",[var.ecs_prefix, terraform.workspace, "app-task"])
+  family                   = join("-", [var.ecs_prefix, local.environment, "app-task"])
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
@@ -29,7 +29,7 @@ resource "aws_ecs_task_definition" "app" {
 }
 
 resource "aws_ecs_service" "main" {
-  name            = join("-",[var.ecs_prefix, terraform.workspace, "service"])
+  name            = join("-", [var.ecs_prefix, local.environment, "service"])
   cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.app.arn
   desired_count   = var.app_count
@@ -43,7 +43,7 @@ resource "aws_ecs_service" "main" {
 
   load_balancer {
     target_group_arn = aws_alb_target_group.app.id
-    container_name   = join("-",[var.ecs_prefix, terraform.workspace, "app"])
+    container_name   = join("-", [var.ecs_prefix, local.environment, "app"])
     container_port   = var.app_port
   }
 

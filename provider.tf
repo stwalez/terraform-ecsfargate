@@ -1,4 +1,21 @@
 # provider.tf
+# terraform {
+#   required_providers {
+#     aws = {
+#       source = "hashicorp/aws"
+#     }
+#   }
+
+#   cloud {
+#     organization = "Case-Demo"
+
+#     workspaces {
+#       name = "terraform-ecsfargate"
+#     }
+#   }
+# }
+
+
 
 # Specify the provider and access details
 provider "aws" {
@@ -10,11 +27,11 @@ provider "aws" {
 # Define alternate aliased providers:
 
 provider "aws" {
-  region  = var.aws_region[1]
-  alias   = "uk"
+  region = var.aws_region[1]
+  alias  = "uk"
 }
 
 provider "aws" {
-  region  = var.aws_region[2]
-  alias   = "germany"
+  region = var.aws_region[2]
+  alias  = "germany"
 }

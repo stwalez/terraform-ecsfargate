@@ -1,7 +1,7 @@
 # variables.tf
-variable "ecs_prefix"{
+variable "ecs_prefix" {
   description = "Standard prefix nomenclature for ecs_resources"
-  default = "ecs"
+  default     = "ecs"
 }
 
 
@@ -17,7 +17,7 @@ variable "ecs_task_execution_role_name" {
 
 variable "alb_port" {
   description = "ALB port"
-  default = 80
+  default     = 80
 }
 
 variable "az_count" {
@@ -54,3 +54,6 @@ variable "fargate_memory" {
   default     = "2048"
 }
 
+variable "env" {}
+
+variable "cidr_block" {}
