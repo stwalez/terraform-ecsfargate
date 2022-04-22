@@ -1,27 +1,33 @@
 ## provider.tf
-# terraform {
-#   required_providers {
-#     aws = {
-#       source = "hashicorp/aws"
-#     }
-#   }
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+    }
+  }
 
-#   cloud {
-#     organization = "Case-Demo"
+  # cloud {
+  #   organization = "Case-Demo"
+  #   workspaces {
+  #     name = "terraform-ecsfargate"
+  #   }
+  # }
 
-#     workspaces {
-#      name = "terraform-ecsfargate"
-#        prefix = "terraform-ecsfargate-"
-#     }
-#   }
-# }
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "Case-Demo"
 
+    workspaces {
+      prefix = "terraform-ecsfargate-"
+    }
+  }
+}
 
 
 # Specify the provider and access details
 provider "aws" {
-  # shared_credentials_files = ["$HOME/.aws/credentials"]
-  # profile                  = "default"
+  #shared_credentials_files = ["$HOME/.aws/credentials"]
+  #profile                  = "default"
   region = var.aws_region[0]
 }
 

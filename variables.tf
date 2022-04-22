@@ -5,8 +5,7 @@ variable "aws_region" {
 }
 
 variable "env" {
-  type    = string
-  default = "dev"
+  type = string
 }
 
 

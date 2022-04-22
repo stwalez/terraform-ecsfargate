@@ -2,7 +2,7 @@
 
 # ALB Security Group: Edit to restrict access to the application
 resource "aws_security_group" "lb" {
-  name        = "ecs-test-load-balancer-security-group"
+  name        = join("-", ["ecs", local.environment, "lb-sec-grp"])
   description = "controls access to the ALB"
   vpc_id      = aws_vpc.main.id
 
@@ -29,7 +29,7 @@ resource "aws_security_group" "lb" {
 
 # Traffic to the ECS cluster should only come from the ALB
 resource "aws_security_group" "ecs_tasks" {
-  name        = "ecs-test-ecs-tasks-security-group"
+  name        = join("-", ["ecs", local.environment, "ecs-tasks-sec-grp"])
   description = "allow inbound access from the ALB only"
   vpc_id      = aws_vpc.main.id
 
