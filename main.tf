@@ -6,13 +6,13 @@ module "common_us" {
 }
 
 module "common_uk" {
-    source = "./common"
-    aws_region = var.aws_region[1]
-    providers = {
-        aws = aws.uk
-    }
-    env = var.env
-    cidr_block = var.cidr_block
+  source     = "./common"
+  aws_region = var.aws_region[1]
+  providers = {
+    aws = aws.uk
+  }
+  env        = var.env
+  cidr_block = var.cidr_block
 }
 
 module "common_germany" {
@@ -21,6 +21,6 @@ module "common_germany" {
   providers = {
     aws = aws.germany
   }
-  env = var.env
+  env        = var.env
   cidr_block = var.cidr_block
 }
